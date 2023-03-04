@@ -23,7 +23,7 @@ Screen_Capture: Screen_Capture,
 
 })
 
-// then = registra o que queremos que aconteça quando a Promise for resolvida
+// then = Registra o que queremos que aconteça quando a Promise for resolvida
 
 .then(Game_Record_Library => {
     if (Game_Record_Library) {
@@ -33,8 +33,35 @@ Screen_Capture: Screen_Capture,
     }
     })
 
-// catch = registra o que queremos que aconteça quando a Promisse falhar
+// catch = Registra o que queremos que aconteça quando a Promisse falhar
 
 .catch(error => next(error));
+};
 
+// SelectAll = Comando para vizualização de informações no Banco de Dados
+
+exports.SelectAll = (req, res, next) => {
+    Game_Record_Library.findAll()
+    .then(Game_Record_Library => {
+        if (Game_Record_Library) {
+            res.status(status.OK).send(Game_Record_Library);
+        }
+    })
+    .catch(error => next(error));
+}
+
+// SelectDetail = Comando para vizualização detalhada no Banco de Dados
+
+exports.SelectDetail = (req, res, next) => {
+    const id = req.params.id;
+
+    Game_Record_Library.findByPk(id)
+    .then(Game_Record_Library => {
+        if (Game_Record_Library) {
+            res.status(status.OK).send(Game_Record_Library);
+        }else{
+            res.status(status.NOT_FOUND).send();
+        }
+    })
+    .catch(error => next(error));
 };
