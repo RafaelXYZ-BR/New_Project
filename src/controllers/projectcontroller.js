@@ -2,6 +2,7 @@
 
 const Game_Record_Library = require('../models/project');
 const status = require('http-status');
+const { where } = require('sequelize');
 
 // Cria o método Insert, obtendo os dados da request 
 
@@ -64,4 +65,61 @@ exports.SelectDetail = (req, res, next) => {
         }
     })
     .catch(error => next(error));
+};
+
+// Update = Permite que realize atualizações em campos do Banco de Dados
+
+exports.Update = (req, res, next) => {
+    const id = req.params.id;
+    const Name = req.body.Name;
+    const Type = req.body.Type;
+    const Description = req.body.Description;
+    const Acquisition_Date = req.body.Acquisition_Date;
+    const Screen_Capture = req.body.Screen_Capture;
+
+    Game_Record_Library.findByPk(id)
+    .then(Game_Record_Library => {
+        if(Game_Record_Library) {
+            Game_Record_Library.update({
+                Name: Name,
+                Type: Type,
+                Description: Description,
+                Acquisition_Date: Acquisition_Date,
+                Screen_Capture: Screen_Capture
+            },
+                {
+                    where: {id: id}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } else {
+                res.status(status.NOT_FOUND).send();
+            }
+        })
+        .catch(error => next(error));
+    };
+
+// Delete = Permite apagar campos no Banco de Dados
+
+exports.Delete = (req, res, next) => {
+    const id = req.params.id;
+
+    Game_Record_Library.findByPk(id)
+        .then(Game_Record_Library => {
+            if (Game_Record_Library) {
+                Game_Record_Library.destroy({
+                    where: { id: id}
+                })
+                .then(() => {
+                    res.status(status.OK).send();
+                })
+                .catch(error => next(error));
+            } 
+            else{
+                res.status(status.NOT_FOUND).send();
+        }
+})
+.catch(error => next(error));
 };
