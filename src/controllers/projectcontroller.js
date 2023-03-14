@@ -12,7 +12,8 @@ exports.Insert = (req,res, next) => {
     const Platform = req.body.Platform;
     const Description= req.body.Description;
     const Acquisition_Date = req.body.Acquisition_Date; 
-    const Screen_Capture = req.body.Screen_Capture;
+    const Screenshot_Link = req.body.Screenshot_Link;
+    const Screenshot_Group_Link = req.body.Screenshot_Group_Link;
     const Active = req.body.Active;
 
 // Popula cada um dos campos do model com os campos recebidos na request
@@ -23,7 +24,8 @@ Type: Type,
 Platform: Platform,
 Description: Description,
 Acquisition_Date: Acquisition_Date,
-Screen_Capture: Screen_Capture,
+Screenshot_Link: Screenshot_Link,
+Screenshot_Group_Link: Screenshot_Group_Link,
 Active: Active,
 
 })
@@ -80,7 +82,8 @@ exports.Update = (req, res, next) => {
     const Platform = req.body.Platform;
     const Description = req.body.Description;
     const Acquisition_Date = req.body.Acquisition_Date;
-    const Screen_Capture = req.body.Screen_Capture;
+    const Screenshot_Link = req.body.Screenshot_Link;
+    const Screenshot_Group_Link = req.body.Screenshot_Group_Link;
     const Active = req.body.Active;
 
     Game_Record_Library.findByPk(id)
@@ -92,7 +95,8 @@ exports.Update = (req, res, next) => {
                 Platform: Platform,
                 Description: Description,
                 Acquisition_Date: Acquisition_Date,
-                Screen_Capture: Screen_Capture,
+                Screenshot_Link: Screenshot_Link,
+                Screenshot_Group_Link: Screenshot_Group_Link,
                 Active: Active
             },
                 {

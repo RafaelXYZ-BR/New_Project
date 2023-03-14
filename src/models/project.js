@@ -47,12 +47,19 @@ Acquisition_Date: {
     allowNull: false,
     type: Sequelize.DATE()
 },
-Screen_Capture: {
+Screenshot_Link: {
     allowNull: false,
     type: Sequelize.STRING(500),
     validate: {
         len: [3, 500]
     }
+},
+Screenshot_Group_Link: {
+    allowNull: false,
+    type: Sequelize.STRING(500),
+    validate: {
+        len: [3, 500]
+    }    
 },
 Active:{
     allowNull: false,
