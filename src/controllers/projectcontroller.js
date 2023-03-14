@@ -9,18 +9,22 @@ const { where } = require('sequelize');
 exports.Insert = (req,res, next) => {
     const Name = req.body.Name;
     const Type = req.body.Type;
+    const Platform = req.body.Platform;
     const Description= req.body.Description;
     const Acquisition_Date = req.body.Acquisition_Date; 
     const Screen_Capture = req.body.Screen_Capture;
+    const Active = req.body.Active;
 
 // Popula cada um dos campos do model com os campos recebidos na request
 
 Game_Record_Library.create( { 
 Name: Name,
 Type: Type,
+Platform: Platform,
 Description: Description,
 Acquisition_Date: Acquisition_Date,
 Screen_Capture: Screen_Capture,
+Active: Active,
 
 })
 
@@ -73,9 +77,11 @@ exports.Update = (req, res, next) => {
     const id = req.params.id;
     const Name = req.body.Name;
     const Type = req.body.Type;
+    const Platform = req.body.Platform;
     const Description = req.body.Description;
     const Acquisition_Date = req.body.Acquisition_Date;
     const Screen_Capture = req.body.Screen_Capture;
+    const Active = req.body.Active;
 
     Game_Record_Library.findByPk(id)
     .then(Game_Record_Library => {
@@ -83,9 +89,11 @@ exports.Update = (req, res, next) => {
             Game_Record_Library.update({
                 Name: Name,
                 Type: Type,
+                Platform: Platform,
                 Description: Description,
                 Acquisition_Date: Acquisition_Date,
-                Screen_Capture: Screen_Capture
+                Screen_Capture: Screen_Capture,
+                Active: Active
             },
                 {
                     where: {id: id}
@@ -122,4 +130,5 @@ exports.Delete = (req, res, next) => {
         }
 })
 .catch(error => next(error));
+
 };

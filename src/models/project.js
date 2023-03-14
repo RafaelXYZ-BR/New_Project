@@ -15,24 +15,31 @@ id: {
     primaryKey: true,
     type: Sequelize.INTEGER
 },
-Name:  {
+Name: {
     allowNull: false,
     type: Sequelize.STRING(150),
     validate: {
-        len: [3, 150]
+        len:[3, 150]
     }
 },
 Type: {
     allowNull: false,
-    type: Sequelize.STRING(50),
-    validade:{
-        len:[3, 50]
+    type: Sequelize.STRING(100),
+    validate:{
+        len:[3, 100]
+    }
+},
+Platform: {
+    allowNull: false,
+    type: Sequelize.STRING(100),
+    validate:{
+        len:[3, 100]
     }
 },
 Description: {
     allowNull: false,
     type: Sequelize.STRING(50),
-    validade:{
+    validate:{
         len:[3, 50]
     }
 },
@@ -43,9 +50,16 @@ Acquisition_Date: {
 Screen_Capture: {
     allowNull: false,
     type: Sequelize.STRING(500),
-    validade: {
+    validate: {
         len: [3, 500]
     }
+},
+Active:{
+    allowNull: false,
+    type: Sequelize.BOOLEAN(),
+    defaultValue: true
 }
+
 });
+
 module.exports = Game_Record_Library;
